@@ -7,11 +7,11 @@ import { Order } from "./order/order.entity";
   imports: [
     TypeOrmModule.forRoot({
       type: "mysql",
-      host: "mysql-database",
+      host: "localhost",
       port: 3306,
-      username: "admin_user",
-      password: "admin_password",
-      database: "cloud_bite_database",
+      username: "root",
+      password: "password123",
+      database: "cloudDB",
       entities: [Order],
       synchronize: true,
       retryAttempts: 50,
