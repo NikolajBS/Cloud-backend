@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: backend
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: backend
+  template:
+    metadata:
+      labels:
+        run: backend
+    spec:
+      containers:
+        - image: UPDATE_ME
+          name: google-cloud-platform-app
+          ports:
+            - containerPort: 9000
