@@ -1,5 +1,5 @@
 #!/bin/bash
-# Define variables
+# variables
 PROJECT_ID="cloud-handin-project"
 REPO_NAME="docker-images"
 COMMIT_SHA=$(git rev-parse HEAD)
