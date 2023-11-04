@@ -26,6 +26,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+      # - name: Update Version
+      #   run: |
+      #     npm run scripts/update-version-script.sh
 
       - name: Install Dependencies
         run: 
@@ -44,7 +47,7 @@ jobs:
       - name: Build and Push Docker Image
       #modify docker image name
       - name: build gcr images
-        run: chmod +x build_push_gcr.sh && build_push_gcr.sh
+        run: chmod +x scripts/build_push_gcr.sh && scripts/build_push_gcr.sh
 
   
   # Deploy:
