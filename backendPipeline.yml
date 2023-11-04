@@ -9,7 +9,13 @@ steps:
     args: ['run', 'build']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/cloud-handin-project/backend-img', '.']
+    args: ['build', '-t', 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID', '.'] 
+  
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - apply
+      - -f
+      - /kubernetes/*.yaml
 
 images:
-  - 'gcr.io/cloud-handin-project/backend-img'
+  - 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID'
