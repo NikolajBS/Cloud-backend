@@ -15,7 +15,7 @@ spec:
         run: backend
     spec:
       containers:
-        - image: UPDATE_ME
+        - image: gcr.io/cloud-handin-project/backend-img:latest
           name: google-cloud-platform-app
           ports:
             - containerPort: 9000
