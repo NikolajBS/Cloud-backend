@@ -8,7 +8,7 @@ IMAGE_NAME="backend-image"
 # Read current version from version file
 TAG=$(cat version.txt)
 
-gcloud auth activate-service-account --key-file=371a6cce878c8d4e32c339510b7aab596ec71bd8
+gcloud auth activate-service-account --key-file=4d0bbd5fa0ee0427f4be5dbfe4435ba31e25b792
 
 # Authenticate Docker to push images to Artifact Registry
 gcloud auth configure-docker "us-central1-docker.pkg.dev"
