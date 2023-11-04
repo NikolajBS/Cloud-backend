@@ -12,7 +12,12 @@ steps:
     args: ['build', '-t', 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID', '.'] 
   
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['container', 'clusters', 'get-credentials', 'autopilot-cluster-1', '--region=us-central1']
+    args:
+      - container
+      - clusters
+      - get-credentials
+      - 'autopilot-cluster-1'
+      - '--region=us-central1'
     env:
       - 'CLOUDSDK_COMPUTE_REGION=us-central1'
       - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1'
