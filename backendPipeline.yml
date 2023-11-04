@@ -1,15 +1,11 @@
 steps:
-  - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', '--recursive', 'https://github.com/NikolajBS/Cloud-backend']
-
-  # Step 2: Install dependencies using npm
-  - name: 'node:14'
-    entrypoint: npm
+  - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
 
-  # Step 3: Build the application
-  - name: 'node:14'
-    entrypoint: npm
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install', 'deepai']
+
+  - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'build']
 
   - name: 'gcr.io/cloud-builders/docker'
@@ -17,5 +13,6 @@ steps:
 
 images:
   - 'gcr.io/cloud-handin-project/backend-img'
-
-
+options:
+  logging: CLOUD_LOGGING_ONLY
+  logs_bucket: cloud-handin-project_cloudbuild
