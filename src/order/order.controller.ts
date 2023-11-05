@@ -37,7 +37,6 @@ export class OrderController {
   try {
     const resp = await deepai.callStandardApi("text2img", {
       text: text,
-      grid_size:"1",
     });
 
     if (resp && resp.output_url) {

@@ -17,6 +17,12 @@ steps:
       - 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID'
       - 'gcr.io/cloud-handin-project/backend-img:latest'
 
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID']
+  
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/cloud-handin-project/backend-img:latest']
+
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - container
@@ -36,14 +42,4 @@ steps:
         export CLOUDSDK_COMPUTE_REGION=us-central1
         export CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1
         kubectl apply -f backend-deployment.yml
-        kubectl apply -f backend-service.yml
-
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID']
-  
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/cloud-handin-project/backend-img:latest']
-
-images:
-  - 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID'
-  - 'gcr.io/cloud-handin-project/backend-img:latest'
+        kubectl apply -f backend-service.yml'
