@@ -13,7 +13,7 @@ resource "google_compute_instance_template" "instance_template" {
   machine_type = "n1-standard-1"
 
   disk {
-    source_image = "projects/ubuntu-os-cloud/global/images/ubuntu-2004-focal-v20220315" # change this to your own image
+    source_image = "projects/cloud-handin-project/global/images/image-balance"  # Change to your image
   }
 
   network_interface {
@@ -36,7 +36,7 @@ resource "google_compute_backend_service" "backend_service" {
 // instance group 
 resource "google_compute_instance_group_manager" "instance_group" {
   name           = "my-instance-group"
-  base_instance_name = "my-instance"
+  base_instance_name = "instance-balance"
   target_size    = 1  # Set desired target size
   version {
     name = "my-version-1"
@@ -51,11 +51,13 @@ resource "google_compute_instance_group_manager" "instance_group" {
 
 
 // health check
-resource "google_compute_http_health_check" "http_health_check" {
+resource "google_compute_health_check" "health_check" {
   name               = "health-check"
   check_interval_sec = 10
   timeout_sec        = 5
-  request_path       = "/" # change this to your own path
+  tcp_health_check {
+    port = 80
+  }
 }
 
 // target pool
@@ -64,7 +66,7 @@ resource "google_compute_target_pool" "target_pool" {
 
   health_checks = [google_compute_health_check.health_check.self_link]
 
-  instances = [] 
+  instances = []  # Add instances here
 }
 
 // forwarding rule
