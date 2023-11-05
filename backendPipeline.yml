@@ -10,7 +10,13 @@ steps:
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID', '.'] 
-  
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'tag'
+      - 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID'
+      - 'gcr.io/cloud-handin-project/backend-img:latest'
+
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - container
@@ -32,5 +38,12 @@ steps:
         kubectl apply -f backend-deployment.yml
         kubectl apply -f backend-service.yml
 
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID']
+  
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/cloud-handin-project/backend-img:latest']
+
 images:
   - 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID'
+  - 'gcr.io/cloud-handin-project/backend-img:latest'
