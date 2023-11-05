@@ -66,7 +66,8 @@ resource "google_compute_target_pool" "target_pool" {
 
   health_checks = [google_compute_health_check.health_check.self_link]
 
-  instances = []  # Add instances here
+  instances = ["https://www.googleapis.com/compute/v1/projects/cloud-handin-project/zones/us-central1-a/instances/instance-blance"]  # Add instances here
+
 }
 
 // forwarding rule
