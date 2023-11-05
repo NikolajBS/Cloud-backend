@@ -29,7 +29,7 @@ steps:
       - |
         export CLOUDSDK_COMPUTE_REGION=us-central1
         export CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1
-        kubectl apply -f /kubernetes/*.yml
+        kubectl apply -f /kubernetes/backend-deployment.yml
 
 images:
   - 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID'
