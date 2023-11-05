@@ -10,7 +10,7 @@ resource "google_compute_address" "lb_ip" {
 // template instance 
 resource "google_compute_instance_template" "instance_template" {
   name         = "my-instance-template"
-  machine_type = "n1-standard-1"
+  machine_type = "e2-medium"
 
   disk {
     source_image = "projects/cloud-handin-project/global/images/image-balance"  # Change to your image
