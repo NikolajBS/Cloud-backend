@@ -42,4 +42,4 @@ steps:
         export CLOUDSDK_COMPUTE_REGION=us-central1
         export CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1
         kubectl apply -f backend-deployment.yml
-        kubectl apply -f backend-service.yml'
+        kubectl apply -f backend-service.yml
