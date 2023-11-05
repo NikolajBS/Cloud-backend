@@ -23,10 +23,13 @@ steps:
       - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1'
 
   - name: 'gcr.io/cloud-builders/kubectl'
-    args:
-      - apply
-      - -f
-      - /kubernetes/*.yaml
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      export CLOUDSDK_COMPUTE_REGION=us-central1
+      export CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1
+      /builder/kubectl apply -f /kubernetes/*.yaml
 
 images:
   - 'gcr.io/cloud-handin-project/backend-img:$BUILD_ID'
