@@ -1,21 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    run: backend
-  name: backend
+  name: nestjs-app
 spec:
-  replicas: 3
+  replicas: 3 
   selector:
     matchLabels:
-      run: backend
+      app: nestjs
   template:
     metadata:
       labels:
-        run: backend
+        app: nestjs
     spec:
       containers:
-        - image: gcr.io/cloud-handin-project/backend-img:latest
-          name: google-cloud-platform-app
+        - name: nestjs-app
+          image: gcr.io/cloud-handin-project/backend-img:latest
           ports:
-            - containerPort: 9000
+            - containerPort: 3000

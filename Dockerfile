@@ -2,10 +2,12 @@ FROM node:lts-alpine
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY package*.json ./
 
 RUN npm install
-# test if below works
+
+COPY . .
+
 RUN npm install deepai
 
 CMD [ "npm", "run", "start:dev" ]
