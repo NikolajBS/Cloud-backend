@@ -27,6 +27,7 @@
     "deepai": "^1.0.23",
     "dotenv": "^16.3.1",
     "mysql2": "^3.6.0",
+    "openai": "^4.17.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "typeorm": "^0.3.17"

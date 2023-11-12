@@ -6,9 +6,9 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+RUN npm install openai
 
-RUN npm install deepai
+COPY . .
 
 CMD [ "npm", "run", "start:dev" ]
 

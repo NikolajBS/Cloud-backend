@@ -1,0 +1,12 @@
+-- Create the table
+CREATE TABLE `order` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    price DECIMAL(10, 2)
+);
+
+-- Insert some arbitrary data
+INSERT INTO `order` (name, price) VALUES
+    ('Product1', 10.99),
+    ('Product2', 25.50),
+    ('Product3', 5.75);

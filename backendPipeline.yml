@@ -25,21 +25,12 @@ steps:
 
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
-      - container
-      - clusters
-      - get-credentials
-      - 'autopilot-cluster-1'
-      - '--region=us-central1'
-    env:
-      - 'CLOUDSDK_COMPUTE_REGION=us-central1'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1'
-
-  - name: 'gcr.io/cloud-builders/kubectl'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        export CLOUDSDK_COMPUTE_REGION=us-central1
-        export CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1
-        kubectl apply -f backend-deployment.yml
-        kubectl apply -f backend-service.yml
+      - 'run'
+      - 'deploy'
+      - 'backend-deployment'  
+      - '--image'
+      - 'gcr.io/cloud-handin-project/backend-img:latest'
+      - '--platform'
+      - 'managed'
+      - '--region'
+      - 'us-central1'  

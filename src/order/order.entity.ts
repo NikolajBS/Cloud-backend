@@ -8,6 +8,6 @@ export class Order {
   @Column()
   name: string;
 
-  @Column()
+  @Column("decimal", { precision: 10, scale: 2 }) 
   price: number;
 }
