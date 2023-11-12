@@ -21,18 +21,6 @@ resource "google_compute_instance_template" "instance_template" {
   }
 }
 
-// service 
-resource "google_compute_backend_service" "backend_service" {
-  name        = "backend-service"
-  port_name   = "http"
-  protocol    = "HTTP"
-  timeout_sec = 10
-
-  backend {
-    group = google_compute_instance_group_manager.instance_group.self_link
-  }
-}
-
 // instance group 
 resource "google_compute_instance_group_manager" "instance_group" {
   name           = "my-instance-group"
@@ -49,14 +37,29 @@ resource "google_compute_instance_group_manager" "instance_group" {
   zone = "us-central1-a"
 }
 
+// service 
+resource "google_compute_backend_service" "backend_service" {
+  name        = "backend-service"
+  port_name   = "http"
+  protocol    = "HTTP"
+  timeout_sec = 10
+
+  backend {
+    group = google_compute_instance_group_manager.instance_group.instance_group
+  }
+  health_checks = [google_compute_health_check.health_check.self_link]
+}
+
 
 // health check
 resource "google_compute_health_check" "health_check" {
   name               = "health-check"
   check_interval_sec = 10
   timeout_sec        = 5
-  tcp_health_check {
-    port = 80
+
+  http_health_check {
+    port        = 80
+    request_path = "/"
   }
 }
 
@@ -65,9 +68,8 @@ resource "google_compute_target_pool" "target_pool" {
   name = "target-pool"
 
   health_checks = [google_compute_health_check.health_check.self_link]
-
-  instances = ["https://www.googleapis.com/compute/v1/projects/cloud-handin-project/zones/us-central1-a/instances/instance-blance"]  # Add instances here
-
+ 
+  instances = ["https://www.googleapis.com/compute/v1/projects/cloud-handin-project/zones/us-central1-a/instances/instance-balance"]
 }
 
 // forwarding rule
