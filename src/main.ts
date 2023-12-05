@@ -7,7 +7,7 @@ dotenv.config(); // Load environment variables from .env file
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({ origin: "*" });
-  await app.listen(5000);
+  await app.listen(3000);
 }
 
 bootstrap();
