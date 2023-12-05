@@ -3,9 +3,6 @@ steps:
     args: ['install']
 
   - name: 'gcr.io/cloud-builders/npm'
-    args: ['install', 'deepai']
-
-  - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'build']
 
   - name: 'gcr.io/cloud-builders/docker'
@@ -22,15 +19,15 @@ steps:
   
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/cloud-handin-project/backend-img:latest']
-
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
-      - 'run'
-      - 'deploy'
-      - 'backend-deployment'  
-      - '--image'
-      - 'gcr.io/cloud-handin-project/backend-img:latest'
-      - '--platform'
-      - 'managed'
-      - '--region'
-      - 'us-central1'  
+  
+  # - name: 'gcr.io/cloud-builders/gcloud'
+  #   args:
+  #     - 'run'
+  #     - 'deploy'
+  #     - 'backend-deployment'  
+  #     - '--image'
+  #     - 'gcr.io/cloud-handin-project/backend-img:latest'
+  #     - '--platform'
+  #     - 'managed'
+  #     - '--region'
+  #     - 'us-central1'  
